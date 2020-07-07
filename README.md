@@ -1,6 +1,6 @@
 ### WebSokket
 
-A simple WebSocket client using Akka actors and streams. 
+A WebSocket client using Akka actors and streams. 
 
 An example is located in ```src/main/scala/examples/BitmexExample.scala``` which goes
 through the basic process of waiting for the connection result and subscribing to a stream.
@@ -58,7 +58,7 @@ The provided callback should be used upon receipt of a message from the socket.
     can be created by calling the ```ClientGraphBuilder.defaultBuilder()``` function with
     a suitable ```FlowMaterialiser```. The latter just takes a ```Uri``` and builds the
     actual connection. A default is provided at ```FlowMaterialiser.DefaultFlowMaterialiser```
-    and can be used together with ``ClientGraphBuilder``` as:
+    and can be used together with ```ClientGraphBuilder``` as:
     
 ```
 // Adapter for messages from the WebSocket client
@@ -74,7 +74,7 @@ val graphBuilderConfig = ClientGraphBuilder.DefaultBuilderConfig()
         val graphBuilder =
           ClientGraphBuilder.defaultBuilder(graphBuilderConfig, flowMaterialiser)
 
-// Start client
+// Start websocket client
 val clientConfig = Client.Config()
 val webSocketClient =
   context.spawn(Client(clientConfig, graphBuilder, handlerProtocolAdapter),
