@@ -50,13 +50,12 @@ object MyHandler {
 ``` 
 
 
--  ```ClientGraphBuilder```: When ```build()``` is invoked with a callback from the client
-this should build the underlying Akka streams graph for the bidirectional websocket flow.
-The provided callback should be used upon receipt of a message from the socket.
+-  ```ClientGraphBuilder```: When ```build()``` is invoked this should build the underlying Akka streams graph for the 
+bidirectional websocket flow. The provided callback should be used upon receipt of a message from the socket.
 
     A hopefully sensible default is at ```ClientGraphBuilder.DefaultBuilder``` which is
     can be created by calling the ```ClientGraphBuilder.defaultBuilder()``` function with
-    a suitable ```FlowMaterialiser```. The latter just takes a ```Uri``` and builds the
+    a suitable ```FlowMaterialiser```. The latter takes a ```Uri``` and builds the
     actual connection. A default is provided at ```FlowMaterialiser.DefaultFlowMaterialiser```
     and can be used together with ```ClientGraphBuilder``` as:
     
@@ -66,13 +65,13 @@ val handlerProtocolAdapter = context.messageAdapter(HandlerProtocolWrapper)
 
 // Creates connection from Uri
 val uri = Uri("wss://www.somewhere.com")
-    val flowMaterialiser: FlowMaterialiser =
-        FlowMaterialiser.defaultMaterialiser(uri)
+val flowMaterialiser: FlowMaterialiser =
+    FlowMaterialiser.defaultMaterialiser(uri)
 
 // Builds Akka streams graph
 val graphBuilderConfig = ClientGraphBuilder.DefaultBuilderConfig()
-        val graphBuilder =
-          ClientGraphBuilder.defaultBuilder(graphBuilderConfig, flowMaterialiser)
+val graphBuilder =
+  ClientGraphBuilder.defaultBuilder(graphBuilderConfig, flowMaterialiser)
 
 // Start websocket client
 val clientConfig = Client.Config()
